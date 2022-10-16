@@ -659,6 +659,24 @@ listener.on('message', msg => {
                 });
             }
 
+            // 调用 python 18： 解答之书
+            const regex39 = /(解答之书|答案之书|解答之書)/i;
+            if (regex39.test(content)) {
+                var options = {
+                    mode: 'text',
+                    pythonOptions: ['-u'],
+                };
+                console.log("somebody ask for answer in the book");
+                const acct = msg.data.account.acct;
+                PythonShell.run('answer_book.py', options, function (err, results) {
+                    if (err)
+                        throw err;
+                    console.log(results[0]);
+                    const reply = results[0];
+                    toot(`@${acct} 的答案是：` + reply, id, visib);
+                });
+            }
+
             
 
             // const content = msg.data.status.content;
