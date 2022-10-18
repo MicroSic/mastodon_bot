@@ -7,7 +7,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 return_string = ''
 path = 'Answer_Book.txt'
 #修改max的值为Answer_Book.txt的行数
-max="10"
+max="350"
 response = requests.get("https://www.random.org/integers/?num=1&min=1&max="+max+"&col=1&base=10&format=plain&rnd=new")
 x=response.text
 

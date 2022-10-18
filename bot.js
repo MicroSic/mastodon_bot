@@ -1,4 +1,5 @@
-st Mastodon = require('mastodon-api');
+require('dotenv').config();
+const Mastodon = require('mastodon-api');
 const fs = require('fs');
 const PythonShell = require('python-shell').PythonShell;
 
@@ -88,8 +89,8 @@ listener.on('message', msg => {
 
 
             // 调用 python 1： 解答之书
-            const regex1 = /(解答之书|答案之书|解答之書)/i;
-            if (regex1.test(content)) {
+            const regex3 = /(解答之书|答案之书|解答之書)/i;
+            if (regex3.test(content)) {
                 var options = {
                     mode: 'text',
                     pythonOptions: ['-u'],
