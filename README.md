@@ -1,5 +1,7 @@
 # mastodon_bot 长毛象机器人
 
+fork from CaoCao
+
 # English Summary:
 
 CaoCao (Fuck*2 in Chinese) is an autoresponder bot project for mastodon. The functions are: accept sentences from users to write a sonnet solitaire, drift bottle, find a random work in ao3, find a random poem online, accept two character names to return a random story, etc. 
@@ -25,75 +27,13 @@ mastodon即长毛象，是一个去中心化的社交平台。操操是长毛象
 
 【转发/转嘟 】-> 我会转嘟
 
-【幸运数/lucky】 -> 我会回复你一个0~99之间的幸运数
-
-【poem/诗】-> 我会按照太阳的启示，返回你一首近现代诗。来源于http://www.chinapoesy.com
-
-【找文/抽文/随机文】 -> 我会按照月亮的启示，从ao3总库中为你甄选一篇作品
-
-【AU/paro/梗 】-> 我会建议你今晚可以写点什么男男操屁股
-
-
---------以下是需要特殊格式的功能--------
-
-
-【奇遇/冒险+换行两次写两个主人公】 -> 我会立刻观测附近平行宇宙中这两个人的奇遇并向你汇报！
-
-          [注意：用换行隔开两个人]
-          示例嘟文格式为：
-          @操操 奇遇
-          角色1
-          角色2
-          
-【加一句/来一句/写一句/你好/接龙+换行写一句话】 -> 您的句子将被操操记录，与广大象友的话接龙成一首诗，视云端收到的句子数目每晚推送。一次投稿多次换行默认记录最后一行！
-
-          示例嘟文格式为：
-          @操操 你好
-          Hello World!
-          
- 【抽卡/抽牌+换行写一个人名】 -> 生成这个人的卡牌，SSR掉率10%有三个技能，SR与R技能书递减概率递增具体多少在random_card里调整
-
-          示例嘟文格式为：
-          @操操 抽卡
-          路人甲
-          
-  【扔瓶子/丢瓶子+换行写一段话】 -> 在/letter这个文件夹中生成一个txt文档，里面储存的是经过base64加密的这些话
-
-          示例嘟文格式为：
-          @操操 扔瓶子
-          第一句话
-          第二句话
-          第三句话
-          ……
-          
-【捡瓶子/收瓶子】 -> 从/letter中随机取一个文档，以嘟文格式回复
-          
-【grammar/LanguageTool】 -> 您的英语作文将被发送至开源自动校对项目languagetool检查可能存在的语法错误
-
-
 # 逻辑
 
 bot.js持续监听长毛象API，通过bot.js或fork python程序完成指令，bot.js向用户发嘟文返回结果
 
 python程序对应：
 
-LanguageTool|grammar -> grammar_check.py
-
-paro|AU|梗 -> AU.py
-
-奇遇|冒险 -> adventure.py
-
-诗|poem -> poem.py
-
-找文|抽文|随机文 -> random_fanfic.py
-
-加一句|来一句|写一句|你好|接龙 -> write_poem.py
-
-抽卡|抽牌 -> random_card.py
-
-扔瓶子|丢瓶子 -> write_letter.py
-
-捡瓶子|收瓶子 -> read_letter.py
+解答之书：answer_book.py
 
 # 为了跑这些代码，你需要
 
@@ -106,6 +46,10 @@ paro|AU|梗 -> AU.py
    ----- bs4
 
 3. 服务器跑额外需要pm2
+
+npm install pm2@latest -g
+
+参考：[https://linuxeye.com/435.html](https://linuxeye.com/435.html)
 
 # 环境布置好后启动程序
 
