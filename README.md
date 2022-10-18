@@ -122,9 +122,11 @@ linux有预装低版本python的现象，比如我的debian预装了python2.7。
 
 解压，打开解压的文件（此时你看到了乱七八糟一堆后缀.py和.json和.js之类的文件），复制目录
 
-比如说 user/me/desktop/mastodon_bot（是个意思，在下面粘你复制好的你的目录不要粘我的）。在cmd里输入
+比如说 D:\mastodon_bot（是个意思，在下面粘你复制好的你的目录不要粘我的）。在cmd里输入
 
-cd user/me/desktop/mastodon_bot 回车，然后把这个窗口放一边备用
+cd D:\mastodon_bot 回车，然后把这个窗口放一边备用
+
+--------------
 
 服务器：`apy install unzip`安装解压zip软件。然后
 ```
