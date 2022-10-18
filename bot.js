@@ -80,16 +80,16 @@ listener.on('message', msg => {
                             console.error(error);
                         } else {
                             console.log(`Reblogged: ${data.content}`);
-                            // toot("有人叫我转这条↑ 操！");
+                            // toot("有人叫我转这条↑");
                         }
                     });
                 }
             }
 
 
-            // 调用 python 18： 解答之书
-            const regex39 = /(解答之书|答案之书|解答之書)/i;
-            if (regex39.test(content)) {
+            // 调用 python 1： 解答之书
+            const regex1 = /(解答之书|答案之书|解答之書)/i;
+            if (regex1.test(content)) {
                 var options = {
                     mode: 'text',
                     pythonOptions: ['-u'],
