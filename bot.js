@@ -98,8 +98,11 @@ listener.on('message', msg => {
                 console.log("somebody ask for answer in the book");
                 const acct = msg.data.account.acct;
                 PythonShell.run('answer_book.py', options, function (err, results) {
-                    if (err)
-                        throw err;
+                    if (err) {
+                        console.error("Python 脚本执行失败:", err);
+                        toot(`@${acct} 抱歉，我找不到答案。`, id, visib);
+                        return;
+                    }    
                     console.log(results[0]);
                     const reply = results[0];
                     toot(`@${acct} 的答案是：` + reply, id, visib);
@@ -112,4 +115,10 @@ listener.on('message', msg => {
     }
 });
 
-listener.on('error', err => console.log(err))
+listener.on('error', err => {
+  console.error("Stream connection error:", err.message);
+  // 可选：加入重连机制
+  setTimeout(() => {
+    listener = M.stream('streaming/user');
+  }, 5000);
+});
