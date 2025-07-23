@@ -12,6 +12,7 @@ const M = new Mastodon({
   access_token: process.env.ACCESS_TOKEN,
   timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
   api_url: process.env.API_URL, // optional, defaults to https://mastodon.social/api/v1/
+  streaming_api_url: process.env.STREAMING_API_URL,
 });
 
 // toot 发布函数
