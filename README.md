@@ -180,3 +180,93 @@ nano .env    #打开.env
 像上面一样也是获取`CLIENT_KEY`，`CLIENT_SECRET`和`ACCESS_TOKEN`并且贴上去，同时修改API_URL，Ctrl+X保存，按y确定。
 
 `pm2 start bot.js`启动就行了。
+
+
+# 2025年更新
+
+Debian 12预装了 python3.11，直接用就好。
+
+```
+➜  /opt which python3
+/usr/bin/python3
+➜  /opt python3 --version
+Python 3.11.2
+➜  /opt apt update 
+➜  /opt apt install python3-pip
+# 先确认一下python3的版本，如果比较新就直接用，不用再源码编译了
+
+➜  /opt apt info nodejs
+Package: nodejs
+Version: 18.19.0+dfsg-6~deb12u2
+Priority: optional
+# apt包管理器里的nodejs版本非常低
+
+➜  /opt curl -sL https://deb.nodesource.com/setup_22.x | bash -
+➜  /opt apt info nodejs                                                      
+Package: nodejs
+Version: 22.17.1-1nodesource1
+Priority: optional
+# 指定一下版本，可以看到能够安装v22的nodejs了
+# 现在开始安装nodejs
+➜  /opt apt install nodejs -y
+➜  /opt node --version
+v22.17.1
+➜  /opt npm --version 
+10.9.2
+
+➜  /opt npm install pm2@latest -g
+# 安装pm2
+
+➜  /opt pip3 install requests
+error: externally-managed-environment
+
+× This environment is externally managed
+╰─> To install Python packages system-wide, try apt install
+    python3-xyz, where xyz is the package you are trying to
+    install.
+    
+    If you wish to install a non-Debian-packaged Python package,
+    create a virtual environment using python3 -m venv path/to/venv.
+    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+    sure you have python3-full installed.
+    
+    If you wish to install a non-Debian packaged Python application,
+    it may be easiest to use pipx install xyz, which will manage a
+    virtual environment for you. Make sure you have pipx installed.
+    
+    See /usr/share/doc/python3.11/README.venv for more information.
+
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+# pip安装python包时提醒，尝试用 pip3 安装包到系统 Python 环境中（/usr/bin/python3），但系统现在默认不允许这样做
+# 所以使用一个虚拟环境
+
+➜  /opt apt install python3.11-venv
+
+➜  /opt python3 -m venv venv       
+➜  /opt source venv/bin/activate
+(venv) ➜  /opt
+# 这样就进入虚拟环境venv了
+# 会发现/opt目录下多了个venv目录
+
+# 开始安装bot运行需要的python包
+(venv) ➜  /opt pip install requests
+# 或者使用pip3也是一样的
+(venv) ➜  /opt pip3 install bs4
+(venv) ➜  /opt git clone https://github.com/MicroSic/mastodon_bot
+# 克隆本仓库到/opt
+
+(venv) ➜  /opt cd mastodon_bot                                        
+(venv) ➜  mastodon_bot git:(main) mv .env-example .env
+(venv) ➜  mastodon_bot git:(main) ✗ nano .env
+
+# 修改.env中的环境变量
+# 启动bot
+(venv) ➜  mastodon_bot git:(main) ✗ pm2 start bot.js
+
+# 查看日志
+(venv) ➜  mastodon_bot git:(main) ✗ pm2 logs bot
+
+# 重启bot
+(venv) ➜  mastodon_bot git:(main) ✗ pm2 restart bot
+```
