@@ -269,4 +269,27 @@ hint: See PEP 668 for the detailed specification.
 
 # 重启bot
 (venv) ➜  mastodon_bot git:(main) ✗ pm2 restart bot
+
+# pm2开机自启动
+(venv) ➜  mastodon_bot git:(main) pm2 startup
+...
+Target path
+/etc/systemd/system/pm2-root.service
+Command list
+[ 'systemctl enable pm2-root' ]
+[PM2] Writing init configuration in /etc/systemd/system/pm2-root.service
+[PM2] Making script booting at startup...
+[PM2] [-] Executing: systemctl enable pm2-root...
+Created symlink /etc/systemd/system/multi-user.target.wants/pm2-root.service → /etc/systemd/system/pm2-root.service.
+[PM2] [v] Command successfully executed.
++---------------------------------------+
+[PM2] Freeze a process list on reboot via:
+$ pm2 save
+
+[PM2] Remove init script via:
+$ pm2 unstartup systemd
+
+(venv) ➜  mastodon_bot git:(main) pm2 save
+[PM2] Saving current process list...
+[PM2] Successfully saved in /root/.pm2/dump.pm2
 ```
